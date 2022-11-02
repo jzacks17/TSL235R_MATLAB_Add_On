@@ -16,6 +16,7 @@ classdef TSL235R < matlabshared.addon.LibraryBase
      end
 
      methods
+         %create the sensor object and configure the digital pin
          function obj = TSL235R(parentObj, arduinoPin)
             obj.Parent = parentObj;
             obj.Pin = arduinoPin;
@@ -23,9 +24,15 @@ classdef TSL235R < matlabshared.addon.LibraryBase
             
         end 
         
+        %Read irradiance from the TSL235R
         function out = read(obj)
             cmdID = obj.READ_COMMAND;
-            input = str2double(obj.Pin(2));
+
+            %send digital pin number as the input for the header file
+            input = str2double(obj.Pin(2)); 
+
+            %receives output as three bytes (decimals, ones and hundreds)
+            %reconfigure the bytes as the output
             output = sendCommand(obj, obj.LibraryName, cmdID, input);
             irr = output;
             out = (irr(1)/100)+(irr(2))+(irr(3)*100);
