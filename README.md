@@ -1,6 +1,9 @@
 # TSL235R_MATLAB_Add_On
 MATLAB add-on package to read the TSL235R sensor through Arduino
 
+The add-on package reads the TSL235R sensor, outputting the irradiance reading 
+in µW/cm2. 
+
 Prior to using this add-on package ensure that you have installed the Matlab 
 support package for Arduino hardware. 
 
